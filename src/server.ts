@@ -44,6 +44,7 @@ router.use((req, res, next) => {
 	next();
 });
 
+// Routes
 router.use("/sample", sampleRoutes);
 router.use("/items", itemRoutes);
 
