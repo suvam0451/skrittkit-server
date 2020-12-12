@@ -4,8 +4,9 @@
   "private": true,
   "main": "src/server.ts",
   "scripts": {
-    "build": "rm -rf build/ && tsc",
-    "start": "nodemon build/server.js"
+    "init": "rm -rf build/ && tsc",
+    "start": "rm -rf build/ && tsc && nodemon build/server.js",
+    "server": "nodemon build/server.js"
   },
   "dependencies": {
     "@types/body-parser": "^1.19.0",

@@ -10,6 +10,7 @@ var config_1 = __importDefault(require("./config/config"));
 var logging_1 = __importDefault(require("./config/logging"));
 var sample_1 = __importDefault(require("./routes/sample"));
 var items_1 = __importDefault(require("./routes/items"));
+var downloader_1 = __importDefault(require("./routes/downloader"));
 var NAMESPACE = "Server";
 var router = express_1.default();
 router.use(function (req, res, next) {
@@ -33,8 +34,10 @@ router.use(function (req, res, next) {
     }
     next();
 });
+// Routes
 router.use("/sample", sample_1.default);
 router.use("/items", items_1.default);
+router.use("/download", downloader_1.default);
 /* Routes */
 router.use(function (req, res, next) {
     var error = new Error("Not found");

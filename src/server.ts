@@ -5,6 +5,7 @@ import config from "./config/config";
 import logging from "./config/logging";
 import sampleRoutes from "./routes/sample";
 import itemRoutes from "./routes/items";
+import downloadRoute from "./routes/downloader";
 
 const NAMESPACE = "Server";
 const router = express();
@@ -47,6 +48,7 @@ router.use((req, res, next) => {
 // Routes
 router.use("/sample", sampleRoutes);
 router.use("/items", itemRoutes);
+router.use("/download", downloadRoute);
 
 /* Routes */
 router.use((req, res, next) => {
