@@ -15,20 +15,27 @@ const StandAlone = (req: Request, res: Response, next: NextFunction) => {
 	});
 };
 
-const AddSingleDownloadToAria = (req: Request, res: Response, next: NextFunction) => {
+const AddSingleDownloadToYoutubeDL = (req: Request, res: Response, next: NextFunction) => {
 	const url = req.query.url || "";
 	console.log(url);
-	exec(`aria2p add ${url}`, (err, stdout, stderr) => {
-		if (err) {
-			console.log(`error: ${err.message}`);
-			return;
+	exec(
+		`youtube-dl -x --audio-format mp3 --output /opt/music/"%(title)s.%(ext)s" ${url}`,
+		(err, stdout, stderr) => {
+			if (err) {
+				return res.status(200).json({
+					message: `error: ${err.message}`
+				});
+			} else if (stderr) {
+				return res.status(400).json({
+					message: `Please check your URL`
+				});
+			} else {
+				return res.status(201).json({
+					message: `Download completed successfully`
+				});
+			}
 		}
-		if (stderr) {
-			console.log(`stderr: ${stderr}`);
-			return;
-		}
-		console.log(`stdout: ${stdout}`);
-	});
+	);
 };
 
-export default { StandAlone };
+export default { StandAlone, AddSingleDownloadToYoutubeDL };

@@ -4,5 +4,6 @@ import express from "express";
 const router = express.Router();
 
 router.get("/", controller.StandAlone);
+router.get("/yt", controller.AddSingleDownloadToYoutubeDL);
 
 export = router;
